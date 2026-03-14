@@ -1,0 +1,20 @@
+---
+description: Phases du projet et workflow de progression
+alwaysApply: true
+---
+
+# Phases du projet
+
+**Toujours consulter le fichier de phase actif** dans `phases/` :
+- PHASE_1_SETUP.md - Initialisation
+- PHASE_2_AUTH.md - Authentification
+- PHASE_3_CRUD.md - Clients, Articles, Catégories
+- PHASE_4_INVOICING.md - Facturation & PDF
+- PHASE_5_DASHBOARD.md - Dashboard & Admin
+- PHASE_6_DEPLOY.md - Tests & Déploiement
+
+## Indicateur de progression
+À chaque message : `📍 Phase X/6 — Étape Y — [Nom]`
+
+## Passage de phase
+Valider toutes les étapes avant de passer à la phase suivante.

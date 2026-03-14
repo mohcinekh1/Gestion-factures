@@ -3,10 +3,12 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { theme } from './theme/theme';
 import { AuthProvider } from './contexts/AuthContext';
 import * as firebaseService from './services/firebaseService';
+import * as jsonService from './services/jsonService';
 
-// Expose firebaseService in console for testing (phase 3.1)
+// Expose services in console for testing (phase 3.1 & 3.2)
 if (import.meta.env.DEV) {
   window.firebaseService = firebaseService;
+  window.jsonService = jsonService;
 }
 import PrivateRoute from './routes/PrivateRoute';
 import AdminRoute from './routes/AdminRoute';

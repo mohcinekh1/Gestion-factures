@@ -2,6 +2,12 @@ import { ThemeProvider, CssBaseline } from '@mui/material';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { theme } from './theme/theme';
 import { AuthProvider } from './contexts/AuthContext';
+import * as firebaseService from './services/firebaseService';
+
+// Expose firebaseService in console for testing (phase 3.1)
+if (import.meta.env.DEV) {
+  window.firebaseService = firebaseService;
+}
 import PrivateRoute from './routes/PrivateRoute';
 import AdminRoute from './routes/AdminRoute';
 import Layout from './components/layout/Layout';

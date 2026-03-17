@@ -7,6 +7,7 @@ import {
   ListItemIcon,
   ListItemText,
   Box,
+  Typography,
 } from '@mui/material';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PeopleIcon from '@mui/icons-material/People';
@@ -16,30 +17,48 @@ import InventoryIcon from '@mui/icons-material/Inventory';
 import CategoryIcon from '@mui/icons-material/Category';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import { useAuth } from '../../contexts/AuthContext';
 
-const DRAWER_WIDTH = 260;
+export const DRAWER_WIDTH = 260;
+
+const NAVY = '#0A0F2C';
+const GOLD = '#C9A84C';
 
 const userMenuItems = [
-  { path: '/dashboard', label: 'Dashboard', icon: <DashboardIcon /> },
+  { path: '/dashboard', label: 'Dashboard', icon: <DashboardIcon />, end: true },
   { path: '/clients', label: 'Clients', icon: <PeopleIcon /> },
   { path: '/factures', label: 'Factures', icon: <DescriptionIcon /> },
 ];
 
 const adminMenuItems = [
-  { path: '/admin', label: 'Dashboard Admin', icon: <AdminPanelSettingsIcon /> },
+  { path: '/admin', label: 'Dashboard Admin', icon: <AdminPanelSettingsIcon />, end: true },
   { path: '/admin/articles', label: 'Articles', icon: <InventoryIcon /> },
   { path: '/admin/categories', label: 'Catégories', icon: <CategoryIcon /> },
   { path: '/admin/validation', label: 'Validation factures', icon: <CheckCircleIcon /> },
 ];
 
+const navItemSx = {
+  borderRadius: '10px',
+  color: 'rgba(255,255,255,0.65)',
+  transition: 'all 0.2s ease',
+  '&.active': {
+    backgroundColor: `rgba(201,168,76,0.15)`,
+    color: GOLD,
+    '& .MuiListItemIcon-root': { color: GOLD },
+    borderLeft: `3px solid ${GOLD}`,
+    pl: '13px',
+  },
+  '&:hover': {
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    color: '#fff',
+    '& .MuiListItemIcon-root': { color: 'rgba(255,255,255,0.9)' },
+  },
+};
+
 function Sidebar() {
   const { userRole, logout } = useAuth();
   const isAdmin = userRole === 'admin';
-
-  const handleLogout = () => {
-    logout();
-  };
 
   return (
     <Drawer
@@ -50,101 +69,120 @@ function Sidebar() {
         '& .MuiDrawer-paper': {
           width: DRAWER_WIDTH,
           boxSizing: 'border-box',
-          backgroundColor: '#1E3A5F',
-          color: 'rgba(255,255,255,0.9)',
+          backgroundColor: NAVY,
           borderRight: 'none',
+          boxShadow: '4px 0 24px rgba(0,0,0,0.3)',
+          overflow: 'hidden',
         },
       }}
     >
-      <Box sx={{ overflow: 'auto', py: 2 }}>
-        <List>
+      {/* Décorations d'arrière-plan (mêmes que Login) */}
+      <Box sx={{ position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'hidden', zIndex: 0 }}>
+        <Box sx={{
+          position: 'absolute', top: -80, right: -80,
+          width: 280, height: 280, borderRadius: '50%',
+          background: `radial-gradient(circle, rgba(201,168,76,0.10) 0%, transparent 70%)`,
+        }} />
+        <Box sx={{
+          position: 'absolute', bottom: -60, left: -60,
+          width: 220, height: 220, borderRadius: '50%',
+          background: `radial-gradient(circle, rgba(26,39,80,0.8) 0%, transparent 70%)`,
+        }} />
+      </Box>
+
+      <Box sx={{ overflow: 'auto', py: 2, position: 'relative', zIndex: 1, height: '100%', display: 'flex', flexDirection: 'column' }}>
+        {/* Logo */}
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.2, px: 2.5, mb: 4 }}>
+          <Box sx={{
+            width: 36, height: 36, borderRadius: '8px',
+            background: `linear-gradient(135deg, ${GOLD} 0%, #e8c96a 100%)`,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            flexShrink: 0,
+          }}>
+            <ReceiptLongIcon sx={{ color: NAVY, fontSize: 20 }} />
+          </Box>
+          <Typography sx={{ color: '#fff', fontWeight: 700, fontSize: '0.95rem', letterSpacing: 0.3, lineHeight: 1.2 }}>
+            Gestion des<br />Factures
+          </Typography>
+        </Box>
+
+        {/* Section utilisateur */}
+        <Typography sx={{
+          color: 'rgba(255,255,255,0.3)', fontSize: '0.7rem', fontWeight: 600,
+          letterSpacing: 1.5, textTransform: 'uppercase', px: 3, mb: 1,
+        }}>
+          Menu
+        </Typography>
+
+        <List sx={{ px: 1.5, flexGrow: 1 }}>
           {userMenuItems.map((item) => (
-            <ListItem key={item.path} disablePadding sx={{ px: 1.5, py: 0.5 }}>
-              <ListItemButton
-                component={NavLink}
-                to={item.path}
-                sx={{
-                  borderRadius: 1,
-                  '&.active': {
-                    backgroundColor: 'rgba(33, 150, 243, 0.2)',
-                    color: '#2196F3',
-                    '& .MuiListItemIcon-root': { color: '#2196F3' },
-                  },
-                  '&:hover': {
-                    backgroundColor: 'rgba(255,255,255,0.08)',
-                  },
-                }}
-              >
+            <ListItem key={item.path} disablePadding sx={{ py: 0.3 }}>
+              <ListItemButton component={NavLink} to={item.path} end={item.end} sx={navItemSx}>
                 <ListItemIcon sx={{ color: 'inherit', minWidth: 40 }}>
                   {item.icon}
                 </ListItemIcon>
-                <ListItemText primary={item.label} />
+                <ListItemText
+                  primary={item.label}
+                  primaryTypographyProps={{ fontSize: '0.875rem', fontWeight: 500 }}
+                />
               </ListItemButton>
             </ListItem>
           ))}
+
           {isAdmin && (
             <>
-              <ListItem disablePadding sx={{ px: 1.5, py: 0.5, mt: 1 }}>
-                <ListItemText
-                  primary="Administration"
-                  sx={{
-                    fontSize: '0.75rem',
-                    color: 'rgba(255,255,255,0.5)',
-                    px: 2,
-                    textTransform: 'uppercase',
-                    letterSpacing: 1,
-                  }}
-                />
-              </ListItem>
+              <Box sx={{ my: 2, mx: 1, height: '1px', backgroundColor: 'rgba(255,255,255,0.08)' }} />
+              <Typography sx={{
+                color: 'rgba(255,255,255,0.3)', fontSize: '0.7rem', fontWeight: 600,
+                letterSpacing: 1.5, textTransform: 'uppercase', px: 2, mb: 1,
+              }}>
+                Administration
+              </Typography>
               {adminMenuItems.map((item) => (
-                <ListItem key={item.path} disablePadding sx={{ px: 1.5, py: 0.5 }}>
-                  <ListItemButton
-                    component={NavLink}
-                    to={item.path}
-                    sx={{
-                      borderRadius: 1,
-                      '&.active': {
-                        backgroundColor: 'rgba(33, 150, 243, 0.2)',
-                        color: '#2196F3',
-                        '& .MuiListItemIcon-root': { color: '#2196F3' },
-                      },
-                      '&:hover': {
-                        backgroundColor: 'rgba(255,255,255,0.08)',
-                      },
-                    }}
-                  >
+                <ListItem key={item.path} disablePadding sx={{ py: 0.3 }}>
+                  <ListItemButton component={NavLink} to={item.path} end={item.end} sx={navItemSx}>
                     <ListItemIcon sx={{ color: 'inherit', minWidth: 40 }}>
                       {item.icon}
                     </ListItemIcon>
-                    <ListItemText primary={item.label} />
+                    <ListItemText
+                      primary={item.label}
+                      primaryTypographyProps={{ fontSize: '0.875rem', fontWeight: 500 }}
+                    />
                   </ListItemButton>
                 </ListItem>
               ))}
             </>
           )}
-          <ListItem disablePadding sx={{ px: 1.5, py: 0.5, mt: 2 }}>
-            <ListItemButton
-              onClick={handleLogout}
-              sx={{
-                borderRadius: 1,
-                color: 'rgba(255,255,255,0.7)',
-                '&:hover': {
-                  backgroundColor: 'rgba(244, 67, 54, 0.2)',
-                  color: '#f44336',
-                },
-              }}
-            >
-              <ListItemIcon sx={{ color: 'inherit', minWidth: 40 }}>
-                <LogoutIcon />
-              </ListItemIcon>
-              <ListItemText primary="Déconnexion" />
-            </ListItemButton>
-          </ListItem>
         </List>
+
+        {/* Déconnexion en bas */}
+        <Box sx={{ px: 1.5, pb: 2 }}>
+          <Box sx={{ height: '1px', backgroundColor: 'rgba(255,255,255,0.08)', mb: 2 }} />
+          <ListItemButton
+            onClick={logout}
+            sx={{
+              borderRadius: '10px',
+              color: 'rgba(255,255,255,0.5)',
+              transition: 'all 0.2s ease',
+              '&:hover': {
+                backgroundColor: 'rgba(201,168,76,0.12)',
+                color: GOLD,
+                '& .MuiListItemIcon-root': { color: GOLD },
+              },
+            }}
+          >
+            <ListItemIcon sx={{ color: 'inherit', minWidth: 40 }}>
+              <LogoutIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary="Déconnexion"
+              primaryTypographyProps={{ fontSize: '0.875rem', fontWeight: 500 }}
+            />
+          </ListItemButton>
+        </Box>
       </Box>
     </Drawer>
   );
 }
 
 export default Sidebar;
-export { DRAWER_WIDTH };

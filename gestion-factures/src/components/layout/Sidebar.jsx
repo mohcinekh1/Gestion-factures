@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+﻿import { NavLink } from 'react-router-dom';
 import {
   Drawer,
   List,
@@ -23,7 +23,7 @@ import { useAuth } from '../../contexts/AuthContext';
 export const DRAWER_WIDTH = 260;
 
 const NAVY = '#0A0F2C';
-const GOLD = '#C9A84C';
+const GOLD = '#FB923C';
 
 const userMenuItems = [
   { path: '/dashboard', label: 'Dashboard', icon: <DashboardIcon />, end: true },
@@ -43,7 +43,7 @@ const navItemSx = {
   color: 'rgba(255,255,255,0.65)',
   transition: 'all 0.2s ease',
   '&.active': {
-    backgroundColor: `rgba(201,168,76,0.15)`,
+    backgroundColor: `rgba(251,146,60,0.15)`,
     color: GOLD,
     '& .MuiListItemIcon-root': { color: GOLD },
     borderLeft: `3px solid ${GOLD}`,
@@ -81,7 +81,7 @@ function Sidebar() {
         <Box sx={{
           position: 'absolute', top: -80, right: -80,
           width: 280, height: 280, borderRadius: '50%',
-          background: `radial-gradient(circle, rgba(201,168,76,0.10) 0%, transparent 70%)`,
+          background: `radial-gradient(circle, rgba(251,146,60,0.10) 0%, transparent 70%)`,
         }} />
         <Box sx={{
           position: 'absolute', bottom: -60, left: -60,
@@ -95,7 +95,7 @@ function Sidebar() {
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.2, px: 2.5, mb: 4 }}>
           <Box sx={{
             width: 36, height: 36, borderRadius: '8px',
-            background: `linear-gradient(135deg, ${GOLD} 0%, #e8c96a 100%)`,
+            background: `linear-gradient(135deg, ${GOLD} 0%, #FDBA74 100%)`,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             flexShrink: 0,
           }}>
@@ -165,7 +165,7 @@ function Sidebar() {
               color: 'rgba(255,255,255,0.5)',
               transition: 'all 0.2s ease',
               '&:hover': {
-                backgroundColor: 'rgba(201,168,76,0.12)',
+                backgroundColor: 'rgba(251,146,60,0.12)',
                 color: GOLD,
                 '& .MuiListItemIcon-root': { color: GOLD },
               },

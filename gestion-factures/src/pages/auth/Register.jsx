@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { useNavigate, Link as RouterLink, Navigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -19,7 +19,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import BeamsBackground from '../../components/common/BeamsBackground';
 
 const NAVY = '#0A0F2C';
-const GOLD = '#C9A84C';
+const GOLD = '#FB923C';
 const TEXT_DARK = '#1A1F36';
 
 const validationSchema = Yup.object({
@@ -111,7 +111,7 @@ function Register() {
             <Box sx={{
               position: 'absolute', top: -80, right: -80,
               width: 280, height: 280, borderRadius: '50%',
-              background: `radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%)`,
+              background: `radial-gradient(circle, rgba(251,146,60,0.12) 0%, transparent 70%)`,
             }} />
             <Box sx={{
               position: 'absolute', bottom: -60, left: -60,
@@ -124,7 +124,7 @@ function Register() {
                   position: 'absolute',
                   top: 60 + row * 70, left: 20 + col * 70,
                   width: 3, height: 3, borderRadius: '50%',
-                  backgroundColor: 'rgba(201,168,76,0.18)',
+                  backgroundColor: 'rgba(251,146,60,0.18)',
                 }} />
               ))
             )}
@@ -135,7 +135,7 @@ function Register() {
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.2, mb: { xs: 3, md: 6 } }}>
               <Box sx={{
                 width: 36, height: 36, borderRadius: '8px',
-                background: `linear-gradient(135deg, ${GOLD} 0%, #e8c96a 100%)`,
+                background: `linear-gradient(135deg, ${GOLD} 0%, #FDBA74 100%)`,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
               }}>
                 <ReceiptLongIcon sx={{ color: NAVY, fontSize: 20 }} />

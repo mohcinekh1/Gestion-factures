@@ -92,6 +92,23 @@ export async function getFacturesByClient(clientId) {
   }
 }
 
+export async function getNextInvoiceNumber() {
+  try {
+    const factures = await getFactures();
+    const year = new Date().getFullYear();
+    const prefix = `FAC-${year}-`;
+    const numbers = factures
+      .filter((f) => f.numero && f.numero.startsWith(prefix))
+      .map((f) => parseInt(f.numero.replace(prefix, ''), 10))
+      .filter((n) => !isNaN(n));
+    const max = numbers.length ? Math.max(...numbers) : 0;
+    return `FAC-${year}-${String(max + 1).padStart(4, '0')}`;
+  } catch (error) {
+    console.error('Erreur getNextInvoiceNumber:', error);
+    throw error;
+  }
+}
+
 export async function addFacture(factureData) {
   try {
     const facturesRef = ref(database, 'factures');
@@ -132,6 +149,31 @@ export async function validateFacture(id, adminUid) {
     });
   } catch (error) {
     console.error('Erreur validateFacture:', error);
+    throw error;
+  }
+}
+
+export async function rejectFacture(id, motif = '') {
+  try {
+    await updateFacture(id, {
+      statut: 'REJETEE',
+      motif_rejet: motif || null,
+    });
+  } catch (error) {
+    console.error('Erreur rejectFacture:', error);
+    throw error;
+  }
+}
+
+export async function getUsers() {
+  try {
+    const usersRef = ref(database, 'users');
+    const snapshot = await get(usersRef);
+    if (!snapshot.exists()) return [];
+    const data = snapshot.val();
+    return Object.keys(data).map((key) => ({ id: key, ...data[key] }));
+  } catch (error) {
+    console.error('Erreur getUsers:', error);
     throw error;
   }
 }

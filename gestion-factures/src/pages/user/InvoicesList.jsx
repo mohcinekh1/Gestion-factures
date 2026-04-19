@@ -52,7 +52,7 @@ function InvoicesList() {
   const { factures, loading, error, deleteFacture } = useInvoices(
     userRole === 'admin' ? null : currentUser?.uid
   );
-  const { clients } = useClients();
+  const { clients } = useClients(userRole === 'admin' ? null : currentUser?.uid);
   const [filterStatut, setFilterStatut] = useState('');
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [factureToDelete, setFactureToDelete] = useState(null);

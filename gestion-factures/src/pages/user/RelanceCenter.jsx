@@ -77,7 +77,7 @@ function RelanceCenter() {
   const isAdmin = userRole === 'admin';
 
   const { factures, loading: loadingF } = useInvoices(isAdmin ? null : currentUser?.uid);
-  const { clients, loading: loadingC } = useClients();
+  const { clients, loading: loadingC } = useClients(isAdmin ? null : currentUser?.uid);
   const loading = loadingF || loadingC;
 
   const [search, setSearch] = useState('');

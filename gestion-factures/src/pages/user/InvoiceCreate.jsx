@@ -88,7 +88,7 @@ const invoiceSchema = Yup.object({
 function InvoiceCreate() {
   const navigate = useNavigate();
   const { currentUser } = useAuth();
-  const { clients, loading: clientsLoading } = useClients();
+  const { clients, loading: clientsLoading } = useClients(currentUser?.uid);
   const { articles: articlesCatalog, categories, error: articlesError } = useArticles();
   const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
 

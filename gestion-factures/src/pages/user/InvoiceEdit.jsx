@@ -90,7 +90,8 @@ function InvoiceEdit() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { currentUser, userRole } = useAuth();
-  const { clients, loading: clientsLoading } = useClients();
+  const isAdmin = userRole === 'admin';
+  const { clients, loading: clientsLoading } = useClients(isAdmin ? null : currentUser?.uid);
   const { articles: articlesCatalog, categories, error: articlesError } = useArticles();
 
   const [loading, setLoading] = useState(true);

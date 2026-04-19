@@ -16,6 +16,9 @@ import { useClients } from '../../hooks/useClients';
 import { getAdminStats } from '../../utils/dashboardStats';
 import { formatCurrency } from '../../utils/calculations';
 import KPICard from '../../components/dashboard/KPICard';
+import MonthlyRevenueChart from '../../components/dashboard/MonthlyRevenueChart';
+import StatusPieChart from '../../components/dashboard/StatusPieChart';
+import InvoicesLineChart from '../../components/dashboard/InvoicesLineChart';
 import { useNavigate } from 'react-router-dom';
 
 const STATUT_CONFIG = {
@@ -86,6 +89,19 @@ function AdminDashboard() {
           </Grid>
         ))}
       </Grid>
+
+      {/* Graphiques — 3 colonnes strictement égales (1/3 chacune) */}
+      <Box sx={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, 1fr)',
+        gap: 2,
+        mt: 1,
+        width: '100%',
+      }}>
+        <MonthlyRevenueChart data={stats.ca_mensuel} loading={loading} />
+        <StatusPieChart data={stats.repartition_statuts} loading={loading} />
+        <InvoicesLineChart data={stats.factures_par_mois} loading={loading} />
+      </Box>
 
       {/* Table factures en attente */}
       <Paper elevation={0} sx={{

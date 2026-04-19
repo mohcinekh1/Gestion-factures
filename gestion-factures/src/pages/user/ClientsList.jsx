@@ -1,4 +1,4 @@
-﻿import { useState, useMemo } from 'react';
+﻿import { useState, useMemo, useRef } from 'react';
 import {
   Box,
   Typography,
@@ -27,6 +27,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SearchIcon from '@mui/icons-material/Search';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import { useAuth } from '../../contexts/AuthContext';
 import { useClients } from '../../hooks/useClients';
 import ClientForm from '../../components/clients/ClientForm';
 
@@ -41,12 +42,15 @@ function getInitials(nom) {
 }
 
 function ClientsList() {
-  const { clients, loading, error, addClient, updateClient, deleteClient } = useClients();
+  const { currentUser, userRole } = useAuth();
+  const isAdmin = userRole === 'admin';
+  const { clients, loading, error, addClient, updateClient, deleteClient } = useClients(isAdmin ? null : currentUser?.uid);
   const [search, setSearch] = useState('');
   const [formOpen, setFormOpen] = useState(false);
   const [editingClient, setEditingClient] = useState(null);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [clientToDelete, setClientToDelete] = useState(null);
+  const submittingRef = useRef(false);
 
   const filteredClients = useMemo(() => {
     if (!search.trim()) return clients;
@@ -58,9 +62,15 @@ function ClientsList() {
   const handleOpenEdit = (client) => { setEditingClient(client); setFormOpen(true); };
   const handleCloseForm = () => { setFormOpen(false); setEditingClient(null); };
   const handleFormSubmit = async (values) => {
-    if (editingClient) await updateClient(editingClient.id, values);
-    else await addClient(values);
-    handleCloseForm();
+    if (submittingRef.current) return;
+    submittingRef.current = true;
+    try {
+      if (editingClient) await updateClient(editingClient.id, values);
+      else await addClient({ ...values, created_by: currentUser?.uid });
+      handleCloseForm();
+    } finally {
+      submittingRef.current = false;
+    }
   };
   const handleOpenDelete = (client) => { setClientToDelete(client); setDeleteDialogOpen(true); };
   const handleCloseDelete = () => { setDeleteDialogOpen(false); setClientToDelete(null); };

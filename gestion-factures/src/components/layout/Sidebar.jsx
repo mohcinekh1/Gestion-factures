@@ -61,10 +61,10 @@ const navItemSx = {
 };
 
 function Sidebar() {
-  const { userRole, logout } = useAuth();
+  const { userRole, logout, currentUser } = useAuth();
   const isAdmin = userRole === 'admin';
 
-  const { factures } = useInvoices(null);
+  const { factures } = useInvoices(isAdmin ? null : currentUser?.uid);
   const relanceCount = buildRelanceList(factures).length;
 
   return (

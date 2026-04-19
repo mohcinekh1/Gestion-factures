@@ -43,7 +43,7 @@ function UserDashboard() {
   const { currentUser, userRole } = useAuth();
   const isAdmin = userRole === 'admin';
   const { factures, loading } = useInvoices(isAdmin ? null : currentUser?.uid);
-  const { clients } = useClients();
+  const { clients } = useClients(isAdmin ? null : currentUser?.uid);
 
   const stats = getUserStats(factures, isAdmin ? null : currentUser?.uid);
   const clientMap = useMemo(

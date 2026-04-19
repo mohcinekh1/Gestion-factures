@@ -1,4 +1,4 @@
-import { jsPDF } from 'jspdf';
+﻿import { jsPDF } from 'jspdf';
 import { autoTable } from 'jspdf-autotable';
 import { formatCurrency } from './calculations';
 import { format } from 'date-fns';
@@ -17,7 +17,7 @@ const EMETTEUR = {
   banque: 'Banque Populaire'
 };
 
-const ACCENT_COLOR = [251, 146, 60]; // Orange 400 #FB923C (cohérent app)
+const ACCENT_COLOR = [240, 180, 41]; // Jaune accent #F0B429 (cohérent app)
 const TEXT_COLOR = [30, 41, 59]; // Slate 800
 const LIGHT_TEXT = [100, 116, 139]; // Slate 500
 

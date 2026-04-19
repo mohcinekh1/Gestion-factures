@@ -30,7 +30,7 @@ import BlockIcon from '@mui/icons-material/Block';
 import { useArticles } from '../../hooks/useArticles';
 
 const NAVY = '#0A0F2C';
-const GOLD = '#FB923C';
+const GOLD = '#F0B429';
 const TEXT_DARK = '#1A1F36';
 
 const TVA_BY_CATEGORY = {
@@ -111,12 +111,12 @@ function CategoryForm({ open, onClose, category, categories, onSubmit }) {
           <Box sx={{
             position: 'absolute', top: -30, right: -30,
             width: 120, height: 120, borderRadius: '50%',
-            background: `radial-gradient(circle, rgba(251,146,60,0.12) 0%, transparent 70%)`,
+            background: `radial-gradient(circle, rgba(240,180,41,0.12) 0%, transparent 70%)`,
             pointerEvents: 'none',
           }} />
           <Box sx={{
             width: 38, height: 38, borderRadius: '9px',
-            background: `linear-gradient(135deg, ${GOLD} 0%, #FDBA74 100%)`,
+            background: `linear-gradient(135deg, #C89A1A 0%, #F0B429 35%, #FFD95A 65%, #F0B429 100%)`,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             flexShrink: 0,
           }}>
@@ -270,14 +270,14 @@ function AdminCategories() {
         <Box sx={{
           position: 'absolute', top: -40, right: -40,
           width: 180, height: 180, borderRadius: '50%',
-          background: `radial-gradient(circle, rgba(251,146,60,0.12) 0%, transparent 70%)`,
+          background: `radial-gradient(circle, rgba(240,180,41,0.12) 0%, transparent 70%)`,
           pointerEvents: 'none',
         }} />
 
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Box sx={{
             width: 48, height: 48, borderRadius: '12px',
-            background: `linear-gradient(135deg, ${GOLD} 0%, #FDBA74 100%)`,
+            background: `linear-gradient(135deg, #C89A1A 0%, #F0B429 35%, #FFD95A 65%, #F0B429 100%)`,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             flexShrink: 0,
           }}>
@@ -305,11 +305,11 @@ function AdminCategories() {
             letterSpacing: 0.8,
             borderRadius: '10px',
             px: 2.5, py: 1.1,
-            boxShadow: `0 4px 16px rgba(251,146,60,0.35)`,
+            boxShadow: `0 4px 16px rgba(240,180,41,0.35)`,
             transition: 'all 0.2s ease',
             '&:hover': {
-              backgroundColor: '#FDBA74',
-              boxShadow: `0 6px 24px rgba(251,146,60,0.5)`,
+              backgroundColor: '#FFD95A',
+              boxShadow: `0 6px 24px rgba(240,180,41,0.5)`,
               transform: 'translateY(-1px)',
             },
           }}
@@ -379,7 +379,7 @@ function AdminCategories() {
                     sx={{
                       backgroundColor: index % 2 === 0 ? '#fff' : 'rgba(10,15,44,0.018)',
                       transition: 'background-color 0.15s ease',
-                      '&:hover': { backgroundColor: `rgba(251,146,60,0.06)` },
+                      '&:hover': { backgroundColor: `rgba(240,180,41,0.06)` },
                       '& .MuiTableCell-root': {
                         borderBottom: '1px solid rgba(10,15,44,0.06)',
                         py: 1.8,
@@ -395,7 +395,7 @@ function AdminCategories() {
                           background: `linear-gradient(135deg, ${NAVY} 0%, #1a2750 100%)`,
                           display: 'flex', alignItems: 'center', justifyContent: 'center',
                           flexShrink: 0,
-                          border: `2px solid rgba(251,146,60,0.3)`,
+                          border: `2px solid rgba(240,180,41,0.3)`,
                         }}>
                           <CategoryIcon sx={{ fontSize: 16, color: GOLD }} />
                         </Box>
@@ -411,7 +411,7 @@ function AdminCategories() {
                         size="small"
                         sx={{
                           backgroundColor: hasArticles
-                            ? `rgba(251,146,60,0.12)`
+                            ? `rgba(240,180,41,0.12)`
                             : 'rgba(10,15,44,0.05)',
                           color: hasArticles ? '#7c2d12' : '#8A94A6',
                           fontSize: '0.78rem',
@@ -453,7 +453,7 @@ function AdminCategories() {
                             borderRadius: '8px',
                             width: 32, height: 32,
                             '&:hover': {
-                              backgroundColor: `rgba(251,146,60,0.15)`,
+                              backgroundColor: `rgba(240,180,41,0.15)`,
                               color: GOLD,
                             },
                           }}

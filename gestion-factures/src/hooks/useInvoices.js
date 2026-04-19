@@ -35,8 +35,26 @@ export function useInvoices(userId = null) {
   }, []);
 
   useEffect(() => {
-    refreshFactures();
-  }, [refreshFactures]);
+    setLoading(true);
+    setError(null);
+
+    const unsubscribe = firebaseService.subscribeFactures(
+      (data) => {
+        const filtered = userId
+          ? data.filter((f) => f.created_by === userId)
+          : data;
+        setFactures(filtered);
+        setLoading(false);
+      },
+      (err) => {
+        setError(err?.message || 'Erreur lors du chargement des factures');
+        setFactures([]);
+        setLoading(false);
+      }
+    );
+
+    return () => unsubscribe();
+  }, [userId]);
 
   return {
     factures,

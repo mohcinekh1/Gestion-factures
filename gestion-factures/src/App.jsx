@@ -5,6 +5,7 @@ import { fr } from 'date-fns/locale';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { theme } from './theme/theme';
 import { AuthProvider } from './contexts/AuthContext';
+import { UIProvider } from './contexts/UIContext';
 import * as firebaseService from './services/firebaseService';
 import * as jsonService from './services/jsonService';
 
@@ -24,45 +25,52 @@ import InvoicesList from './pages/user/InvoicesList';
 import InvoiceCreate from './pages/user/InvoiceCreate';
 import InvoiceDetail from './pages/user/InvoiceDetail';
 import InvoiceEdit from './pages/user/InvoiceEdit';
+import RelanceCenter from './pages/user/RelanceCenter';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminArticles from './pages/admin/AdminArticles';
 import AdminCategories from './pages/admin/AdminCategories';
 import AdminValidation from './pages/admin/AdminValidation';
+import ErrorBoundary from './components/common/ErrorBoundary';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={fr}>
       <BrowserRouter>
-        <AuthProvider>
-          <CssBaseline />
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+        <UIProvider>
+          <AuthProvider>
+            <CssBaseline />
+            <ErrorBoundary>
+              <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
 
-            <Route element={<PrivateRoute />}>
-              <Route element={<Layout />}>
-                <Route path="/" element={<Navigate to="/dashboard" replace />} />
-                <Route path="/dashboard" element={<UserDashboard />} />
-                <Route path="/clients" element={<ClientsList />} />
-                <Route path="/factures" element={<InvoicesList />} />
-                <Route path="/factures/nouvelle" element={<InvoiceCreate />} />
-                <Route path="/factures/:id/modifier" element={<InvoiceEdit />} />
-                <Route path="/factures/:id" element={<InvoiceDetail />} />
-              </Route>
-              <Route path="/admin" element={<AdminRoute />}>
-                <Route element={<Layout />}>
-                  <Route index element={<AdminDashboard />} />
-                  <Route path="articles" element={<AdminArticles />} />
-                  <Route path="categories" element={<AdminCategories />} />
-                  <Route path="validation" element={<AdminValidation />} />
+                <Route element={<PrivateRoute />}>
+                  <Route element={<Layout />}>
+                    <Route path="/" element={<Navigate to="/dashboard" replace />} />
+                    <Route path="/dashboard" element={<UserDashboard />} />
+                    <Route path="/clients" element={<ClientsList />} />
+                    <Route path="/factures" element={<InvoicesList />} />
+                    <Route path="/factures/nouvelle" element={<InvoiceCreate />} />
+                    <Route path="/factures/:id/modifier" element={<InvoiceEdit />} />
+                    <Route path="/factures/:id" element={<InvoiceDetail />} />
+                    <Route path="/relance" element={<RelanceCenter />} />
+                  </Route>
+                  <Route path="/admin" element={<AdminRoute />}>
+                    <Route element={<Layout />}>
+                      <Route index element={<AdminDashboard />} />
+                      <Route path="articles" element={<AdminArticles />} />
+                      <Route path="categories" element={<AdminCategories />} />
+                      <Route path="validation" element={<AdminValidation />} />
+                    </Route>
+                  </Route>
                 </Route>
-              </Route>
-            </Route>
 
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </AuthProvider>
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Routes>
+            </ErrorBoundary>
+          </AuthProvider>
+        </UIProvider>
       </BrowserRouter>
       </LocalizationProvider>
     </ThemeProvider>

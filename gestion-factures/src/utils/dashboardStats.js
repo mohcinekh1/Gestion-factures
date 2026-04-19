@@ -96,7 +96,7 @@ export function getAdminStats(factures = [], clients = []) {
   // Répartition par statut pour PieChart
   const repartition_statuts = [
     { name: 'Payées', value: payees.length, color: '#059669' },
-    { name: 'En attente', value: en_attente, color: '#f59e0b' },
+    { name: 'En attente', value: en_attente, color: '#D97706' },
     { name: 'Rejetées', value: rejetees, color: '#dc2626' },
   ].filter((d) => d.value > 0);
 

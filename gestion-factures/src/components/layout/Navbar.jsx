@@ -1,11 +1,11 @@
-﻿import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Box, Avatar, Chip } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useAuth } from '../../contexts/AuthContext';
 import { DRAWER_WIDTH } from './Sidebar';
 
 const NAVY = '#0A0F2C';
-const GOLD = '#FB923C';
+const GOLD = '#F0B429';
 
 function Navbar() {
   const { currentUser, userRole, logout } = useAuth();
@@ -30,7 +30,7 @@ function Navbar() {
         background: 'rgba(255,255,255,0.72)',
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
-        borderBottom: '1px solid rgba(251,146,60,0.15)',
+        borderBottom: '1px solid rgba(240,180,41,0.15)',
         boxShadow: '0 2px 16px rgba(10,15,44,0.07)',
       }}
     >
@@ -41,12 +41,12 @@ function Navbar() {
             label="Admin"
             size="small"
             sx={{
-              backgroundColor: `rgba(251,146,60,0.15)`,
+              backgroundColor: `rgba(240,180,41,0.15)`,
               color: GOLD,
               fontWeight: 700,
               fontSize: '0.7rem',
               letterSpacing: 0.8,
-              border: `1px solid rgba(251,146,60,0.3)`,
+              border: `1px solid rgba(240,180,41,0.3)`,
               height: 22,
             }}
           />
@@ -86,8 +86,8 @@ function Navbar() {
               fontSize: '0.8rem', fontWeight: 600,
               transition: 'all 0.2s ease',
               '&:hover': {
-                backgroundColor: `rgba(251,146,60,0.1)`,
-                borderColor: `rgba(251,146,60,0.4)`,
+                backgroundColor: `rgba(240,180,41,0.1)`,
+                borderColor: `rgba(240,180,41,0.4)`,
                 color: GOLD,
                 '& svg': { color: GOLD },
               },

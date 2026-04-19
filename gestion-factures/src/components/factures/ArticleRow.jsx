@@ -1,4 +1,4 @@
-import {
+﻿import {
   TableRow,
   TableCell,
   TextField,
@@ -13,7 +13,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { formatCurrency } from '../../utils/calculations';
 
 const NAVY = '#0A0F2C';
-const GOLD = '#FB923C';
+const GOLD = '#F0B429';
 
 const inputSx = {
   '& .MuiOutlinedInput-root': {
@@ -185,7 +185,7 @@ function ArticleRow({
             py: 1,
             px: 1.5,
             borderRadius: '8px',
-            backgroundColor: 'rgba(251,146,60,0.08)',
+            backgroundColor: 'rgba(240,180,41,0.08)',
             fontWeight: 600,
             fontSize: '0.875rem',
             color: NAVY,

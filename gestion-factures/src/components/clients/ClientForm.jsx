@@ -14,7 +14,7 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import EditIcon from '@mui/icons-material/Edit';
 
 const NAVY = '#0A0F2C';
-const GOLD = '#FB923C';
+const GOLD = '#F0B429';
 const TEXT_DARK = '#1A1F36';
 
 const fieldSx = {
@@ -109,12 +109,12 @@ export default function ClientForm({ open, onClose, client, onSubmit, clients = 
           <Box sx={{
             position: 'absolute', top: -30, right: -30,
             width: 120, height: 120, borderRadius: '50%',
-            background: `radial-gradient(circle, rgba(251,146,60,0.12) 0%, transparent 70%)`,
+            background: `radial-gradient(circle, rgba(240,180,41,0.12) 0%, transparent 70%)`,
             pointerEvents: 'none',
           }} />
           <Box sx={{
             width: 38, height: 38, borderRadius: '9px',
-            background: `linear-gradient(135deg, ${GOLD} 0%, #FDBA74 100%)`,
+            background: `linear-gradient(135deg, #C89A1A 0%, #F0B429 35%, #FFD95A 65%, #F0B429 100%)`,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             flexShrink: 0,
           }}>

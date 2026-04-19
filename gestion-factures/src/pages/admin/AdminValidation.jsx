@@ -33,7 +33,7 @@ import * as firebaseService from '../../services/firebaseService';
 import { formatCurrency } from '../../utils/calculations';
 
 const STATUT_CONFIG = {
-  EN_ATTENTE: { label: 'En attente', color: '#f59e0b', bg: 'rgba(245,158,11,0.15)' },
+  EN_ATTENTE: { label: 'En attente', color: '#D97706', bg: 'rgba(217,119,6,0.15)' },
   PAYEE: { label: 'Payée', color: '#059669', bg: 'rgba(5,150,105,0.15)' },
   REJETEE: { label: 'Rejetée', color: '#dc2626', bg: 'rgba(220,38,38,0.15)' },
 };
@@ -147,12 +147,12 @@ function AdminValidation() {
         <Box sx={{
           position: 'absolute', top: -40, right: -40,
           width: 180, height: 180, borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(251,146,60,0.12) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(240,180,41,0.12) 0%, transparent 70%)',
           pointerEvents: 'none',
         }} />
         <Box sx={{
           width: 48, height: 48, borderRadius: '12px',
-          background: 'linear-gradient(135deg, #FB923C 0%, #FDBA74 100%)',
+          background: 'linear-gradient(135deg, #F0B429 0%, #FFD95A 100%)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           flexShrink: 0,
         }}>

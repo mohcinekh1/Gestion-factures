@@ -30,10 +30,10 @@ import { formatCurrency } from '../../utils/calculations';
 import KPICard from '../../components/dashboard/KPICard';
 
 const NAVY = '#0A0F2C';
-const GOLD = '#FB923C';
+const GOLD = '#F0B429';
 
 const STATUT_CONFIG = {
-  EN_ATTENTE: { label: 'En attente', color: '#f59e0b', bg: 'rgba(245,158,11,0.15)' },
+  EN_ATTENTE: { label: 'En attente', color: '#D97706', bg: 'rgba(217,119,6,0.15)' },
   PAYEE: { label: 'Payée', color: '#059669', bg: 'rgba(5,150,105,0.15)' },
   REJETEE: { label: 'Rejetée', color: '#dc2626', bg: 'rgba(220,38,38,0.15)' },
 };
@@ -68,7 +68,7 @@ function UserDashboard() {
               color: NAVY,
               fontWeight: 600,
               borderRadius: '10px',
-              '&:hover': { backgroundColor: '#FDBA74' },
+              '&:hover': { backgroundColor: '#FFD95A' },
             }}
           >
             Nouvelle facture
@@ -90,7 +90,7 @@ function UserDashboard() {
             title="Total Factures"
             value={stats.total_factures}
             icon={<ReceiptLongIcon />}
-            color="#FB923C"
+            color="#F0B429"
             loading={loading}
           />
         </Grid>
@@ -99,7 +99,7 @@ function UserDashboard() {
             title="En attente"
             value={stats.factures_en_attente}
             icon={<ScheduleIcon />}
-            color="#f59e0b"
+            color="#D97706"
             loading={loading}
           />
         </Grid>
@@ -192,7 +192,7 @@ function UserDashboard() {
             mt: 2,
             color: GOLD,
             fontWeight: 600,
-            '&:hover': { backgroundColor: 'rgba(251,146,60,0.08)' },
+            '&:hover': { backgroundColor: 'rgba(240,180,41,0.08)' },
           }}
         >
           Voir toutes

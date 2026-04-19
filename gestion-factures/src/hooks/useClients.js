@@ -21,8 +21,23 @@ export function useClients() {
   }, []);
 
   useEffect(() => {
-    refreshClients();
-  }, [refreshClients]);
+    setLoading(true);
+    setError(null);
+
+    const unsubscribe = firebaseService.subscribeClients(
+      (data) => {
+        setClients(data);
+        setLoading(false);
+      },
+      (err) => {
+        setError(err?.message || 'Erreur lors du chargement des clients');
+        setClients([]);
+        setLoading(false);
+      }
+    );
+
+    return () => unsubscribe();
+  }, []);
 
   const addClient = useCallback(async (data) => {
     setError(null);

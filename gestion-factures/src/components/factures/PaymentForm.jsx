@@ -1,4 +1,4 @@
-import { useFormik } from 'formik';
+﻿import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import {
   Box,
@@ -17,7 +17,7 @@ import { fr } from 'date-fns/locale';
 import * as firebaseService from '../../services/firebaseService';
 
 const NAVY = '#0A0F2C';
-const GOLD = '#FB923C';
+const GOLD = '#F0B429';
 
 const TYPES_VIREMENT = [
   { value: 'Virement bancaire', label: 'Virement bancaire' },
@@ -193,7 +193,7 @@ function PaymentForm({ facture, onSuccess, userRole = 'user' }) {
               fontWeight: 600,
               borderRadius: '10px',
               py: 1.5,
-              '&:hover': { backgroundColor: '#FDBA74' },
+              '&:hover': { backgroundColor: '#FFD95A' },
             }}
           >
             {formik.isSubmitting ? 'Enregistrement…' : 'Mettre à jour'}

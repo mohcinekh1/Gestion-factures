@@ -5,7 +5,7 @@ import { Box, Paper, Typography, Skeleton } from '@mui/material';
  * @param {string} title - Libellé (ex: "Total Factures")
  * @param {string|number} value - Valeur affichée (ex: "42" ou "125 400 MAD")
  * @param {React.ReactNode} icon - Composant MUI Icon
- * @param {string} color - Couleur d'accent (ex: "#FB923C")
+ * @param {string} color - Couleur d'accent (ex: "#F0B429")
  * @param {{ value: number, label: string }} [trend] - Optionnel (ex: { value: 12, label: "+12% ce mois" })
  * @param {boolean} [loading] - Affiche un skeleton pendant le chargement
  */
@@ -72,7 +72,7 @@ function KPICard({ title, value, icon, color, trend, loading = false }) {
             width: 48,
             height: 48,
             borderRadius: '12px',
-            backgroundColor: color ? `${color}20` : 'rgba(251,146,60,0.15)',
+            backgroundColor: color ? `${color}20` : 'rgba(240,180,41,0.15)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -82,7 +82,7 @@ function KPICard({ title, value, icon, color, trend, loading = false }) {
           <Box
             component="span"
             sx={{
-              color: color || '#FB923C',
+              color: color || '#F0B429',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',

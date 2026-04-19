@@ -1,4 +1,4 @@
-import { ref, get, set, push, update, remove } from 'firebase/database';
+import { ref, get, set, push, update, remove, onValue } from 'firebase/database';
 import { database } from './firebase';
 
 function snapshotToArray(snapshot) {
@@ -16,6 +16,18 @@ export async function getClients() {
     console.error('Erreur getClients:', error);
     throw error;
   }
+}
+
+export function subscribeClients(onData, onError) {
+  const clientsRef = ref(database, 'clients');
+  return onValue(
+    clientsRef,
+    (snapshot) => onData(snapshotToArray(snapshot)),
+    (error) => {
+      console.error('Erreur subscribeClients:', error);
+      if (onError) onError(error);
+    }
+  );
 }
 export async function getClientById(id) {
   try {
@@ -68,6 +80,18 @@ export async function getFactures() {
     console.error('Erreur getFactures:', error);
     throw error;
   }
+}
+
+export function subscribeFactures(onData, onError) {
+  const facturesRef = ref(database, 'factures');
+  return onValue(
+    facturesRef,
+    (snapshot) => onData(snapshotToArray(snapshot)),
+    (error) => {
+      console.error('Erreur subscribeFactures:', error);
+      if (onError) onError(error);
+    }
+  );
 }
 
 export async function getFactureById(id) {

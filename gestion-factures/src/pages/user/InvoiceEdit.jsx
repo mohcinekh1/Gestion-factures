@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+﻿import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import {
@@ -40,7 +40,7 @@ import {
 import * as firebaseService from '../../services/firebaseService';
 
 const NAVY = '#0A0F2C';
-const GOLD = '#FB923C';
+const GOLD = '#F0B429';
 
 const fieldSx = {
   mb: 2,
@@ -293,12 +293,12 @@ function InvoiceEdit() {
         <Box sx={{
           position: 'absolute', top: -40, right: -40,
           width: 180, height: 180, borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(251,146,60,0.12) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(240,180,41,0.12) 0%, transparent 70%)',
           pointerEvents: 'none',
         }} />
         <Box sx={{
           width: 48, height: 48, borderRadius: '12px',
-          background: `linear-gradient(135deg, ${GOLD} 0%, #FDBA74 100%)`,
+          background: `linear-gradient(135deg, #C89A1A 0%, #F0B429 35%, #FFD95A 65%, #F0B429 100%)`,
           display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
         }}>
           <EditIcon sx={{ color: NAVY, fontSize: 24 }} />
@@ -410,7 +410,7 @@ function InvoiceEdit() {
                     borderRadius: '8px',
                     borderColor: GOLD,
                     color: GOLD,
-                    '&:hover': { borderColor: GOLD, backgroundColor: 'rgba(251,146,60,0.08)' },
+                    '&:hover': { borderColor: GOLD, backgroundColor: 'rgba(240,180,41,0.08)' },
                   }}
                 >
                   Ajouter un article

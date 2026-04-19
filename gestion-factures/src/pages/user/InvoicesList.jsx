@@ -38,10 +38,10 @@ import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 
 const NAVY = '#0A0F2C';
-const GOLD = '#FB923C';
+const GOLD = '#F0B429';
 
 const STATUT_CONFIG = {
-  EN_ATTENTE: { label: 'En attente', color: '#f59e0b', bg: 'rgba(245,158,11,0.15)' },
+  EN_ATTENTE: { label: 'En attente', color: '#D97706', bg: 'rgba(217,119,6,0.15)' },
   PAYEE: { label: 'Payée', color: '#059669', bg: 'rgba(5,150,105,0.15)' },
   REJETEE: { label: 'Rejetée', color: '#dc2626', bg: 'rgba(220,38,38,0.15)' },
 };
@@ -130,13 +130,13 @@ function InvoicesList() {
         <Box sx={{
           position: 'absolute', top: -40, right: -40,
           width: 180, height: 180, borderRadius: '50%',
-          background: `radial-gradient(circle, rgba(251,146,60,0.12) 0%, transparent 70%)`,
+          background: `radial-gradient(circle, rgba(240,180,41,0.12) 0%, transparent 70%)`,
           pointerEvents: 'none',
         }} />
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Box sx={{
             width: 48, height: 48, borderRadius: '12px',
-            background: `linear-gradient(135deg, ${GOLD} 0%, #FDBA74 100%)`,
+            background: `linear-gradient(135deg, ${GOLD} 0%, #FFD95A 100%)`,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             flexShrink: 0,
           }}>
@@ -162,7 +162,7 @@ function InvoicesList() {
             fontSize: '0.85rem',
             borderRadius: '10px',
             px: 2.5, py: 1.1,
-            '&:hover': { backgroundColor: '#FDBA74' },
+            '&:hover': { backgroundColor: '#FFD95A' },
           }}
         >
           Nouvelle facture
@@ -248,7 +248,7 @@ function InvoicesList() {
                     key={f.id}
                     sx={{
                       backgroundColor: index % 2 === 0 ? '#fff' : 'rgba(10,15,44,0.018)',
-                      '&:hover': { backgroundColor: 'rgba(251,146,60,0.06)' },
+                      '&:hover': { backgroundColor: 'rgba(240,180,41,0.06)' },
                       '& .MuiTableCell-root': {
                         borderBottom: '1px solid rgba(10,15,44,0.06)',
                         py: 1.8,
@@ -280,7 +280,7 @@ function InvoicesList() {
                         sx={{
                           color: NAVY,
                           mr: 0.5,
-                          '&:hover': { color: GOLD, backgroundColor: 'rgba(251,146,60,0.1)' },
+                          '&:hover': { color: GOLD, backgroundColor: 'rgba(240,180,41,0.1)' },
                         }}
                       >
                         <VisibilityIcon fontSize="small" />
@@ -292,7 +292,7 @@ function InvoicesList() {
                         sx={{
                           color: NAVY,
                           mr: 0.5,
-                          '&:hover': { color: GOLD, backgroundColor: 'rgba(251,146,60,0.1)' },
+                          '&:hover': { color: GOLD, backgroundColor: 'rgba(240,180,41,0.1)' },
                         }}
                       >
                         <PictureAsPdfIcon fontSize="small" />

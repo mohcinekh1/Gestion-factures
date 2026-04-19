@@ -53,37 +53,15 @@ export function AuthProvider({ children }) {
       }
     
       async function register(email, password, nom) {
-        // #region agent log
-        fetch('http://127.0.0.1:7917/ingest/6da683cf-3b2e-4b89-bb75-50469f877af6',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'0be1d4'},body:JSON.stringify({sessionId:'0be1d4',location:'AuthContext.jsx:56',message:'register() called',data:{email,nom},hypothesisId:'H-A',timestamp:Date.now()})}).catch(()=>{});
-        // #endregion
-        let userCredential;
-        try {
-          userCredential = await createUserWithEmailAndPassword(auth, email, password);
-          // #region agent log
-          fetch('http://127.0.0.1:7917/ingest/6da683cf-3b2e-4b89-bb75-50469f877af6',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'0be1d4'},body:JSON.stringify({sessionId:'0be1d4',location:'AuthContext.jsx:61',message:'Auth createUser SUCCESS',data:{uid:userCredential.user.uid},hypothesisId:'H-A',timestamp:Date.now()})}).catch(()=>{});
-          // #endregion
-        } catch(authErr) {
-          // #region agent log
-          fetch('http://127.0.0.1:7917/ingest/6da683cf-3b2e-4b89-bb75-50469f877af6',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'0be1d4'},body:JSON.stringify({sessionId:'0be1d4',location:'AuthContext.jsx:65',message:'Auth createUser FAILED',data:{code:authErr.code,message:authErr.message},hypothesisId:'H-A',timestamp:Date.now()})}).catch(()=>{});
-          // #endregion
-          throw authErr;
-        }
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const { uid } = userCredential.user;
-        try {
-          await set(ref(database, `users/${uid}`), {
-            role: 'user',
-            nom,
-            email,
-          });
-          // #region agent log
-          fetch('http://127.0.0.1:7917/ingest/6da683cf-3b2e-4b89-bb75-50469f877af6',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'0be1d4'},body:JSON.stringify({sessionId:'0be1d4',location:'AuthContext.jsx:75',message:'RTDB set users SUCCESS',data:{uid},hypothesisId:'H-B-H-C',timestamp:Date.now()})}).catch(()=>{});
-          // #endregion
-        } catch(dbErr) {
-          // #region agent log
-          fetch('http://127.0.0.1:7917/ingest/6da683cf-3b2e-4b89-bb75-50469f877af6',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'0be1d4'},body:JSON.stringify({sessionId:'0be1d4',location:'AuthContext.jsx:79',message:'RTDB set users FAILED - continuing anyway',data:{code:dbErr.code,message:dbErr.message},hypothesisId:'H-B-H-C',timestamp:Date.now()})}).catch(()=>{});
-          // #endregion
-          console.warn('Profil RTDB non créé (règles Firebase) :', dbErr.message);
-        }
+
+        await set(ref(database, `users/${uid}`), {
+          role: 'user',
+          nom,
+          email,
+        });
+
         return userCredential;
       }
   // ========== PARTIE 7 : VALEUR DU CONTEXTE ==========
